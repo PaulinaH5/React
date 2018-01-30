@@ -1,0 +1,55 @@
+body {
+    background-color:#F3FAFF
+}
+.moviesCounter{
+    font-weight: bold;
+    color:#45B5FF;
+}
+#moviesCountersContainer{
+    text-align:right;
+    border-bottom: 1px solid #45B5FF;
+    font-weight: bold;
+}
+#moviesListContainer{
+    display: initial;
+    padding-top:100px;
+    text-align: center;
+}
+#moviesList{
+    text-align: left;
+}
+#moviesList li:hover{
+    background-color: #B6E9FF;
+}
+#moviesListContainer h2{
+    text-align: center;
+}
+li {
+    border-bottom: 1px solid #28BEFF;
+}
+#toggle {
+    display: none;
+}
+#toggle ~ label:hover {
+    background-color: dodgerblue;
+}
+#toggle ~ label {
+    background: lightskyblue;
+    height: 20px;
+    width: 100px;
+    color: black;
+    font-weight: bold;
+    padding: 16px;
+    display: block;
+}
+.content {
+    visibility: hidden;
+}
+input[type=checkbox]:checked ~ label ~ .content {
+    visibility: visible;
+    background: lightskyblue;
+    height: 200px;
+    padding: 16px;
+    display: block;
+    clear: both;
+}

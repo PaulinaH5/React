@@ -37,7 +37,8 @@ export default class AddMovieForm extends React.Component {
   render() {
     return (
       <div>
-        <h2>Add movie</h2>
+        <input type="checkbox" id="toggle" />
+        <label for="toggle">Add movie</label>
 
         <div className="content">
           <form>
@@ -75,12 +76,10 @@ export default class AddMovieForm extends React.Component {
             </label>
             <br/>
 
-
             <button onClick={e => this.onSubmit(e)}>Add</button>
           </form>
         </div>
       </div>
     );
-
   }
 }
