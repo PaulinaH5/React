@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 
+
 export default class Movie extends Component {
   render() {
     return (
@@ -8,9 +9,9 @@ export default class Movie extends Component {
         <strong>Genre:</strong> {this.props.genre}
         <br/>
 
-        {this.props.watched
+        {this.props.seen
           ? (<span>Already Watched</span>)
-          : (<button onClick={() => this.props.onWatched()}>I watched this</button>)}
+          : (<button onClick={() => this.props.onSeen()}>I watched this</button>)}
 
         <p>{this.props.summary}</p>
       </div>

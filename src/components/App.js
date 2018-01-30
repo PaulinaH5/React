@@ -7,7 +7,10 @@ import Counters from './Counters';
 class App extends Component {
     constructor(props) {
         super(props);
-        let movies = [];
+        let movies = require('../movies.json').map(m => {
+            m.seen = m.seen === 'T';
+            return m;
+        });
         try {
             JSON.parse(localStorage.getItem('movies'));
         } catch(e) {}
@@ -18,24 +21,33 @@ class App extends Component {
         this.setState({movies: [...this.state.movies, movie]});
         localStorage.setItem('movies', JSON.stringify(this.state.movies));
     };
-    countWatched = () => {
+    countSeen = () => {
         let count = 0;
         for (let movie of this.state.movies) {
-            if (movie.watched)
+            if (movie.seen)
                 count += 1;
         }
         return count;
     };
-    onWatched = (movie) => {
-        this.state.movies[movie.id].watched = true;
-        localStorage.setItem('movies', JSON.stringify(this.state.movies));
-        this.forceUpdate();
+    onSeen = (movie) => {
+        let movieInState = null;
+        for (let m of this.state.movies) {
+            if (m.id === movie.id) {
+                movieInState = m;
+                break;
+            }
+        }
+        if (movieInState) {
+            movieInState.seen = true;
+            localStorage.setItem('movies', JSON.stringify(this.state.movies));
+            this.forceUpdate();
+        }
     };
     render() {
         return (
             <div>
-              <Counters watched={this.countWatched()} total={this.state.movies.length} />
-              <MovieList movies={this.state.movies} onWatched={this.onWatched} />
+              <Counters seen={this.countSeen()} total={this.state.movies.length} />
+              <MovieList movies={this.state.movies} onSeen={this.onSeen} />
               <hr/>
               <AddMovie onMovieAdd={this.onAdd} />
             </div>
